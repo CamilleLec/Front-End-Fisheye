@@ -16,23 +16,42 @@
     </head>
     <body>
         <header>
-            <img src="assets/images/logo.png" class="logo" />
+            <img tabindex="0" src="assets/images/logo.png" class="logo" />
         </header>
         <main id="main">
             <div class="photograph-header">
                 <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
             </div>
+
+            <section class="filter">
+                <h3>Trier par</h3>
+
+                <div class="orderByContainer">
+                    <div id="orderBy">
+                        Popularité<i class="fa-solid fa-chevron-up"></i><i class="toto fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div>
+                        <li>Date</li>
+                        <li>Titre</li>
+                    </ul>
+                </div>
+            </section>
+
             <div class="carrousel">
-                <div class="container"></div>
+                <div class="container">
+                    <img src="" alt="" class="photographerElements" />
+                    <video controls src="" class="photographerElements"></video>
+                </div>
                 <i class="fa-solid fa-chevron-right fa-3x chevron" id="right"></i>
                 <i class="fa-solid fa-chevron-left fa-3x chevron" id="left"></i>
                 <i class="fa-sharp fa-solid fa-xmark fa-3x"></i>
             </div>
+            <div id="cards" class="medias"></div>
         </main>
         <div id="contact_modal">
             <div class="modal">
                 <header>
-                    <h2>Contactez-moi</h2>
+                    <h2 tabindex="1">Contactez-moi</h2>
                     <img src="assets/icons/close.svg" onclick="closeModal()" />
                 </header>
                 <form>
