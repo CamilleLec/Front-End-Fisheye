@@ -68,8 +68,9 @@ fetch("data/photographers.json")
                 newImg.style.display = "none";
             }
         }
-        // }
     });
+
+// Fonction qui crée l'encart qui affiche les données du photographe
 
 function displayData(photographerData) {
     const picture = `assets/photographers/${photographerData.portrait}`;
@@ -106,9 +107,8 @@ function displayData(photographerData) {
 
 function renderCards() {
     if (photographerMedia) {
-        const main = document.getElementById("main");
+        // const main = document.getElementById("main");
         const div = document.getElementById("cards");
-
         div.innerHTML = "";
         photographerMedia.forEach((medias, index) => {
             const factory = mediaFactory(medias, first);
@@ -120,7 +120,7 @@ function renderCards() {
 }
 
 function comparelikes(a, b) {
-    return a.likes - b.likes;
+    return b.likes - a.likes;
 }
 
 setTimeout(() => {
@@ -129,18 +129,38 @@ setTimeout(() => {
 }, 3000);
 
 const select = document.getElementById("orderBy");
-const ul = document.querySelector("ul");
+const list = document.querySelector(".list");
 const chevronUp = document.querySelector(".fa-chevron-up");
 const chevronDown = document.querySelector(".fa-chevron-down");
-chevronDown.style.display = "none"
+chevronDown.style.display = "none";
+
 select.addEventListener("click", () => {
-    if (chevronUp.style.display === "block"){
-    ul.style.display = "block";
-    chevronUp.style.display = "none";
-    chevronDown.style.display = "block";}
-    else {
-        ul.style.display = "none";
+    if (!(chevronUp.style.display === "none")) {
+        list.style.display = "flex";
+        chevronUp.style.display = "none";
+        chevronDown.style.display = "block";
+    } else if ((chevronDown.style.display = "block")) {
+        list.style.display = "none";
         chevronUp.style.display = "block";
-        chevronDown.style.display = "none"
+        chevronDown.style.display = "none";
     }
 });
+
+const date = document.getElementById("date");
+const label = document.querySelector(".labelItem");
+console.log(label);
+
+date.addEventListener("click", (e) => {
+    e.target.innerHTML = "Popularité";
+    label.innerHTML = "date";
+    list.style.display = "none";    
+    chevronUp.style.display = "block";
+    chevronDown.style.display = "none";
+});
+
+// function replaceName () {
+//     select.innerHTML = "Date"
+
+// }
+
+// replaceName()

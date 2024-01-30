@@ -25,6 +25,10 @@ ul {
     cursor: pointer;
 }
 
+.contact_button:hover {
+    background-color: #d3573c;
+}
+
 .modal {
     z-index: 1;
     position: absolute;
@@ -52,7 +56,7 @@ ul {
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 40px;
     font-weight: normal;
     text-align: center;
 }
@@ -233,10 +237,11 @@ h3 {
     padding: 19px 0px 19px 30px;
     cursor: pointer;
 }
-ul {
+.list {
     top: 50px;
     position: absolute;
     display: none;
+    flex-direction: column;
     margin: 0px;
     padding: 0;
     font-size: 18px;
@@ -246,8 +251,14 @@ ul {
     cursor: pointer;
 }
 
-ul li {
-    padding: 17px 107px 10px 30px;
+.list span {
+    padding: 17px 87px 10px 30px;
+    margin: 10px;
+    border-top: 1px solid white;
+}
+
+#date {
+    padding-bottom: 0;
 }
 
 .fa-chevron-up {
@@ -258,4 +269,7 @@ ul li {
 .fa-chevron-down {
     padding-left: 22px;
     padding-right: 22px;
+}
+.sizing {
+    z-index: 99;
 }
