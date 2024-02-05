@@ -6,6 +6,7 @@ const carrousel = document.querySelector(".carrousel");
 const container = document.querySelector(".container");
 let photographerMedia = [];
 let first;
+let heartIcon = []
 
 fetch("data/photographers.json")
     .then((response) => response.json())
@@ -25,6 +26,12 @@ fetch("data/photographers.json")
         }
 
         renderCards();
+
+        //      // Ajoutez un événement "click" à l'icône du cœur
+        // heartIcon.forEach(addEventListener("click", () => {
+        //     // Mettez ici le code que vous souhaitez exécuter lorsque l'icône du cœur est cliquée
+        //     console.log("L'icône du cœur a été cliquée !");
+        // }))
 
         // Fermer le carroussel
         function closeLightbox() {
@@ -68,9 +75,15 @@ fetch("data/photographers.json")
                 newImg.style.display = "none";
             }
         }
+
+        let totalLikes = 0;
+        photographerMedia.forEach((elements) => (totalLikes += elements.likes));
+
+        document.querySelector(".totalLikes").innerHTML += totalLikes + ` <i class="fa-solid fa-heart"></i>`;
+        document.querySelector(".rate").innerHTML += photographerData.price + `€ / Jours`;
     });
 
-// Fonction qui crée l'encart qui affiche les données du photographe
+// Affichage du nom, du formulaire et de la photo du photographe
 
 function displayData(photographerData) {
     const picture = `assets/photographers/${photographerData.portrait}`;
@@ -107,7 +120,6 @@ function displayData(photographerData) {
 
 function renderCards() {
     if (photographerMedia) {
-        // const main = document.getElementById("main");
         const div = document.getElementById("cards");
         div.innerHTML = "";
         photographerMedia.forEach((medias, index) => {
@@ -115,52 +127,65 @@ function renderCards() {
             const card = factory.getMediaCard();
             card.setAttribute("tabindex", index + 10);
             div.appendChild(card);
-        });
-    }
-}
+            // const [...heartIcon] = document.querySelectorAll(".fa-heart");
+            // console.log(heartIcon);
+            const hearts = document.querySelectorAll('.fa-heart')
 
-function comparelikes(a, b) {
-    return b.likes - a.likes;
-}
+        //     hearts.forEach(heart => {
+        //         heart.addEventListener('click', () => {
+        //             console.log('ok');
+        //             // Gérer l'événement de clic sur le cœur ici
+        //             // Par exemple, vous pouvez mettre à jour le nombre de likes ou effectuer d'autres actions
+        //         });
+        // });
+    })
+}}
 
-setTimeout(() => {
-    photographerMedia.sort(comparelikes);
-    renderCards();
-}, 3000);
+// function comparelikes(a, b) {
+//     return b.likes - a.likes;
+// }
+
+// setTimeout(() => {
+//     photographerMedia.sort(comparelikes);
+//     renderCards();
+// }, 3000);
 
 const select = document.getElementById("orderBy");
 const list = document.querySelector(".list");
-const chevronUp = document.querySelector(".fa-chevron-up");
-const chevronDown = document.querySelector(".fa-chevron-down");
-chevronDown.style.display = "none";
+const date = document.getElementById("date");
+const orderItem = document.getElementById("orderItem");
+const popularite = document.getElementById("popularite");
+
+let open = false;
+
+function swap() {
+    open = !open;
+    list.style.display = open ? "flex" : "none";
+    select.style.display = open ? "none" : "flex";
+}
 
 select.addEventListener("click", () => {
-    if (!(chevronUp.style.display === "none")) {
-        list.style.display = "flex";
-        chevronUp.style.display = "none";
-        chevronDown.style.display = "block";
-    } else if ((chevronDown.style.display = "block")) {
-        list.style.display = "none";
-        chevronUp.style.display = "block";
-        chevronDown.style.display = "none";
-    }
+    swap();
 });
 
-const date = document.getElementById("date");
-const label = document.querySelector(".labelItem");
-console.log(label);
-
-date.addEventListener("click", (e) => {
-    e.target.innerHTML = "Popularité";
-    label.innerHTML = "date";
-    list.style.display = "none";    
-    chevronUp.style.display = "block";
-    chevronDown.style.display = "none";
+list.addEventListener("click", () => {
+    swap();
 });
 
-// function replaceName () {
-//     select.innerHTML = "Date"
+list.addEventListener("click", (e) => {
+    orderItem.innerText = e.target.closest(".listItem").innerText;
+});
 
-// }
+orderItem.addEventListener("click", (e) => {
+    popularite.innerText = e.target.innerText;
+});
 
-// replaceName()
+function utiliserFonction(callback) {
+    callback();
+}
+
+const maFonctionAnonyme = () => {
+    console.log("Ceci est une fonction anonyme.");
+};
+
+utiliserFonction(maFonctionAnonyme);

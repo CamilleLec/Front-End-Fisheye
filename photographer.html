@@ -25,15 +25,17 @@
 
             <section class="filter">
                 <h3>Trier par</h3>
+
                 <div class="orderByContainer">
-                    <div id="orderBy" class="sizing">
-                        <span class="labelItem">Popularité</span>
+                    <div id="orderBy">
+                        <span id="orderItem">Popularité</span>
                         <i class="fa-solid fa-chevron-up"></i>
-                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <div class="list sizing">
-                        <span id="date">Date</span>
-                        <span id="title">Titre</span>
+
+                    <div class="list">
+                        <span id="popularite" class="listItem">Popularité<i class="fa-solid fa-chevron-down"></i></span>
+                        <span id="date" class="listItem">Date</span>
+                        <span id="title" class="listItem">Titre</span>
                     </div>
                 </div>
             </section>
@@ -49,6 +51,9 @@
             </div>
             <div id="cards" class="medias"></div>
         </main>
+        <footer>
+            <div class="footer"><span class="totalLikes"></span><span class="rate"></span></div>
+        </footer>
         <div id="contact_modal">
             <div class="modal">
                 <header>

@@ -8,12 +8,9 @@ function mediaFactory(media, folder) {
     const first = folder;
     const { photographerId, title, image, video, likes, date, price, id } = media;
 
-    // const select = document.getElementById("orderBy");
-    // select.addEventListener("select", () => {
-    //     console.log("ok");
-    // });
-
-    function orderBy() {likes.sort()}
+    function orderBy() {
+        likes.sort();
+    }
 
     function getMediaCard() {
         const img = document.createElement("img");
@@ -28,6 +25,9 @@ function mediaFactory(media, folder) {
         const cardContent = document.createElement("div");
         cardContent.classList.add("cardContent");
         like.innerHTML = `${likes} <i class="fa-solid fa-heart"></i>`;
+
+        
+
 
         card.addEventListener("click", () => {
             carrousel.style.display = "block";
