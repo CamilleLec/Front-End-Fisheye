@@ -1,12 +1,12 @@
 const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get("id"));
 let photographerData = { name: "name" };
-const closeCarrousel = document.querySelector(".fa-xmark");
+
 const carrousel = document.querySelector(".carrousel");
 const container = document.querySelector(".container");
 let photographerMedia = [];
 let first;
-let heartIcon = []
+let heartIcon = [];
 
 fetch("data/photographers.json")
     .then((response) => response.json())
@@ -26,18 +26,6 @@ fetch("data/photographers.json")
         }
 
         renderCards();
-
-        //      // Ajoutez un événement "click" à l'icône du cœur
-        // heartIcon.forEach(addEventListener("click", () => {
-        //     // Mettez ici le code que vous souhaitez exécuter lorsque l'icône du cœur est cliquée
-        //     console.log("L'icône du cœur a été cliquée !");
-        // }))
-
-        // Fermer le carroussel
-        function closeLightbox() {
-            carrousel.style.display = "none";
-        }
-        closeCarrousel.addEventListener("click", closeLightbox);
 
         // Déplacement dans le carrousel
         const right = document.getElementById("right");
@@ -118,6 +106,11 @@ function displayData(photographerData) {
     button.after(img);
 }
 
+// setTimeout(() => {
+//     photographerMedia.sort(comparelikes);
+//     renderCards();
+// }, 3000);
+
 function renderCards() {
     if (photographerMedia) {
         const div = document.getElementById("cards");
@@ -127,34 +120,16 @@ function renderCards() {
             const card = factory.getMediaCard();
             card.setAttribute("tabindex", index + 10);
             div.appendChild(card);
-            // const [...heartIcon] = document.querySelectorAll(".fa-heart");
-            // console.log(heartIcon);
-            const hearts = document.querySelectorAll('.fa-heart')
-
-        //     hearts.forEach(heart => {
-        //         heart.addEventListener('click', () => {
-        //             console.log('ok');
-        //             // Gérer l'événement de clic sur le cœur ici
-        //             // Par exemple, vous pouvez mettre à jour le nombre de likes ou effectuer d'autres actions
-        //         });
-        // });
-    })
-}}
-
-// function comparelikes(a, b) {
-//     return b.likes - a.likes;
-// }
-
-// setTimeout(() => {
-//     photographerMedia.sort(comparelikes);
-//     renderCards();
-// }, 3000);
+        });
+    }
+}
 
 const select = document.getElementById("orderBy");
 const list = document.querySelector(".list");
-const date = document.getElementById("date");
 const orderItem = document.getElementById("orderItem");
 const popularite = document.getElementById("popularite");
+const date = document.getElementById("date");
+const title = document.getElementById("title");
 
 let open = false;
 
@@ -176,16 +151,27 @@ list.addEventListener("click", (e) => {
     orderItem.innerText = e.target.closest(".listItem").innerText;
 });
 
-orderItem.addEventListener("click", (e) => {
-    popularite.innerText = e.target.innerText;
+popularite.addEventListener("click", () => {
+    photographerMedia.sort((a, b) => b.likes - a.likes);
+    renderCards();
 });
 
-function utiliserFonction(callback) {
-    callback();
-}
+title.addEventListener("click", () => {
+    photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
+    renderCards();
+});
 
-const maFonctionAnonyme = () => {
-    console.log("Ceci est une fonction anonyme.");
-};
+date.addEventListener("click", () => {
+    photographerMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    renderCards();
+});
 
-utiliserFonction(maFonctionAnonyme);
+// function utiliserFonction(callback) {
+//     callback();
+// }
+
+// const maFonctionAnonyme = () => {
+//     console.log("Ceci est une fonction anonyme.");
+// };
+
+// utiliserFonction(maFonctionAnonyme);

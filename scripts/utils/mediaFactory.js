@@ -3,11 +3,14 @@ let currentIndex = 0;
 let rightHandler, leftHandler;
 const newVid = document.querySelector(".carrousel video");
 const newImg = document.querySelector(".carrousel img");
+const closeCarrousel = document.querySelector(".fa-xmark");
+const carrouselTextTitle = document.createElement("h3");
+
 
 function mediaFactory(media, folder) {
     const first = folder;
-    const { photographerId, title, image, video, likes, date, price, id } = media;
-
+    let { photographerId, title, image, video, likes, date, price, id } = media;
+    let liked = false;
     function orderBy() {
         likes.sort();
     }
@@ -24,26 +27,60 @@ function mediaFactory(media, folder) {
         const like = document.createElement("span");
         const cardContent = document.createElement("div");
         cardContent.classList.add("cardContent");
-        like.innerHTML = `${likes} <i class="fa-solid fa-heart"></i>`;
+        like.innerHTML = `<span>${likes}</span> <i class="fa-solid fa-heart hearts"></i>`;
+
+        like.addEventListener("click", () => {
+            const totalLikes = document.querySelector(".totalLikes");
+
+            if (!liked) {
+                likes++;
+                like.innerHTML = `<span>${likes}</span> <i class="fa-solid fa-heart hearts"></i>`;
+                totalLikes.innerHTML = parseInt(totalLikes.innerText) + 1 + ` <i class="fa-solid fa-heart"></i>`;
+            } else {
+                likes--;
+                like.innerHTML = `<span>${likes}</span> <i class="fa-solid fa-heart hearts"></i>`;
+                totalLikes.innerHTML = parseInt(totalLikes.innerText) - 1 + ` <i class="fa-solid fa-heart"></i>`;
+            }
+            liked = !liked;
+        });
 
         
 
-
-        card.addEventListener("click", () => {
+        function openCarrousel() {
             carrousel.style.display = "block";
-
+            allPictures = document.querySelectorAll(".media-item");
             if (image) {
                 newImg.style.display = "block";
                 newImg.src = img.src;
-                allPictures = document.querySelectorAll(".media-item");
+                
                 currentIndex = [...allPictures].indexOf(img);
                 newVid.style.display = "none";
+                carrouselTextTitle.textContent = `${title}`;
+                carrouselTextTitle.style.color = "#901c1c";
+                carrouselTextTitle.style.marginTop = "0";
+                container.appendChild(carrouselTextTitle);
             } else if (video) {
                 newVid.style.display = "block";
                 newVid.src = movie.src;
                 newImg.style.display = "none";
+                carrouselTextTitle.textContent = `${title}`;
+                carrouselTextTitle.style.color = "#901c1c";
+                carrouselTextTitle.style.marginTop = "0";
+                container.appendChild(carrouselTextTitle);
+
             }
-        });
+        }
+
+        img.addEventListener("click", openCarrousel);
+        movie.addEventListener("click", openCarrousel);
+
+
+        // Fermer le carroussel
+        function closeLightbox() {
+            carrousel.style.display = "none";
+            carrouselTextTitle.textContent = ""
+        }
+        closeCarrousel.addEventListener("click", closeLightbox);
 
         if (image) {
             const photographerImages = `assets/images/${first}/${image}`;
