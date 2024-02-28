@@ -8,6 +8,7 @@ function photographerTemplate(data) {
         const article = document.createElement("article");
         // on ajoute l'attribut id sur la balise
         article.setAttribute("data-id", id);
+        article.tabIndex = index + 10;
         const img = document.createElement("img");
         let h2, cityAndCountry, textTagline, txtPrice;
         if (info) {
@@ -19,11 +20,17 @@ function photographerTemplate(data) {
 
         // Attribution des valeurs
         img.setAttribute("src", picture);
+        img.setAttribute("alt", `${name}`);
+
         if (info) {
             h2.textContent = name;
+            h2.setAttribute("aria-label", `Nom du photographe : ${name}`);
             cityAndCountry.textContent = `${city}, ${country}`;
+            cityAndCountry.setAttribute("aria-label", `Ville et pays : ${city}, ${country}`);
             textTagline.textContent = tagline;
+            textTagline.setAttribute("aria-label", `Slogan : ${tagline}`);
             txtPrice.textContent = `${price}€/jour`;
+            txtPrice.setAttribute("aria-label", `Prix : ${price} euros par jour`);
             txtPrice.style.color = "#757575";
         }
 

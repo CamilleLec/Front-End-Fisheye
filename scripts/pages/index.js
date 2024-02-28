@@ -22,6 +22,13 @@ async function displayData(photographers) {
             window.location.href = "photographer.html?id=" + id; //on redirige vers la page photographer en lui passant l'id en parametre
         });
 
+        userCardDOM.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const id = e.currentTarget.getAttribute("data-id");
+                window.location.href = "photographer.html?id=" + id;
+            }
+        });
+
         photographersSection.appendChild(userCardDOM);
     });
 }

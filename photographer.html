@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <meta charset="utf-8" />
@@ -16,7 +16,7 @@
     </head>
     <body>
         <header>
-            <img tabindex="0" src="assets/images/logo.png" class="logo" />
+            <img alt="logo Fisheye" src="assets/images/logo.png" class="logo" />
         </header>
         <main id="main">
             <div class="photograph-header">
@@ -27,27 +27,29 @@
                 <h3>Trier par</h3>
 
                 <div class="orderByContainer">
-                    <div id="orderBy">
+                    <div id="orderBy" tabindex="0">
                         <span id="orderItem">Popularité</span>
-                        <i class="fa-solid fa-chevron-up"></i>
+                        <em class="fa-solid fa-chevron-up"></em>
                     </div>
 
                     <div class="list">
-                        <span id="popularite" class="listItem">Popularité<i class="fa-solid fa-chevron-down"></i></span>
-                        <span id="date" class="listItem">Date</span>
-                        <span id="title" class="listItem">Titre</span>
+                        <span id="popularite" class="listItem" tabindex="0"
+                            >Popularité<em class="fa-solid fa-chevron-down"></em>
+                        </span>
+                        <span id="date" class="listItem" tabindex="0">Date</span>
+                        <span id="title" class="listItem" tabindex="0">Titre</span>
                     </div>
                 </div>
             </section>
 
             <div class="carrousel">
                 <div class="container">
-                    <img src="" alt="" class="photographerElements" />
-                    <video controls src="" class="photographerElements"></video>
+                    <img src="#" alt="" class="photographerElements" />
+                    <video controls class="photographerElements"></video>
                 </div>
-                <i class="fa-solid fa-chevron-right fa-3x chevron" id="right"></i>
-                <i class="fa-solid fa-chevron-left fa-3x chevron" id="left"></i>
-                <i class="fa-sharp fa-solid fa-xmark fa-3x"></i>
+                <em class="fa-solid fa-chevron-right fa-3x chevron" id="right"></em>
+                <em class="fa-solid fa-chevron-left fa-3x chevron" id="left"></em>
+                <em class="fa-sharp fa-solid fa-xmark fa-3x"></em>
             </div>
             <div id="cards" class="medias"></div>
         </main>
@@ -55,10 +57,15 @@
             <div class="footer"><span class="totalLikes"></span><span class="rate"></span></div>
         </footer>
         <div id="contact_modal">
-            <div class="modal">
+            <div class="modal" role="dialog" aria-describedby="contact modal">
                 <header>
-                    <h2 tabindex="1">Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
+                    <h2>Contactez-moi</h2>
+                    <img
+                        class="close_modal"
+                        alt="Fermer la modal"
+                        src="assets/icons/close.svg"
+                        onclick="closeModal()"
+                    />
                 </header>
                 <form>
                     <div>
@@ -71,7 +78,7 @@
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input id="email"/>
+                        <input id="email" />
                     </div>
                     <div>
                         <label for="message">Votre message</label>
