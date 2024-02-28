@@ -10,8 +10,7 @@ form.addEventListener("submit", (e) => {
     const nom = document.getElementById("lastName").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
-
-    // Affichage dans la console
+    
     console.log("Prénom:", prenom);
     console.log("Nom:", nom);
     console.log("Email:", email);

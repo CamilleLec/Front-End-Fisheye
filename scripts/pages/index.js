@@ -15,11 +15,8 @@ async function displayData(photographers) {
         const userCardDOM = photographerModel.getUserCardDOM();
 
         userCardDOM.addEventListener("click", (e) => {
-            //on recupere l'evenement avec e
-            // console.log(e.currentTarget); // e.currenteTarget est la balise qui vient d'etre cliqué
-            const id = e.currentTarget.getAttribute("data-id"); // on recupere l'attribut que l'on a cree dans getusercarddom
-            // console.log(id);
-            window.location.href = "photographer.html?id=" + id; //on redirige vers la page photographer en lui passant l'id en parametre
+            const id = e.currentTarget.getAttribute("data-id");
+            window.location.href = "photographer.html?id=" + id; 
         });
 
         userCardDOM.addEventListener("keydown", (e) => {
@@ -34,7 +31,6 @@ async function displayData(photographers) {
 }
 
 async function init() {
-    // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     displayData(photographers);
 }

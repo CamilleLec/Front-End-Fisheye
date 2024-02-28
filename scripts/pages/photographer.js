@@ -36,14 +36,12 @@ fetch("data/photographers.json")
             allPictures = document.querySelectorAll(".media-item");
             currentIndex = (currentIndex + 1) % allPictures.length;
             updateImage();
-            console.log(currentIndex);
         };
 
         leftHandler = () => {
             allPictures = document.querySelectorAll(".media-item");
             currentIndex = (currentIndex - 1 + allPictures.length) % allPictures.length;
             updateImage();
-            console.log(currentIndex);
         };
 
         // Fermer le carroussel
