@@ -8,7 +8,7 @@ function photographerTemplate(data) {
         const article = document.createElement("article");
         // on ajoute l'attribut id sur la balise
         article.setAttribute("data-id", id);
-        article.tabIndex = index + 10;
+        // article.tabIndex = index + 10;
         const img = document.createElement("img");
         let h2, cityAndCountry, textTagline, txtPrice;
         if (info) {

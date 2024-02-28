@@ -97,6 +97,16 @@ fetch("data/photographers.json")
         document.querySelector(".rate").innerHTML += photographerData.price + `€ / Jours`;
     });
 
+// document.addEventListener("keydown", function (e) {
+//     // Vérifie si la touche Backspace est pressée
+//     if (e.key === "Backspace") {
+//         // Empêche l'action par défaut de la touche Backspace
+//         e.preventDefault();
+//         // Navigue à la page précédente
+//         window.history.back();
+//     }
+// });
+
 // Affichage du nom, du formulaire et de la photo du photographe
 
 function displayData(photographerData) {

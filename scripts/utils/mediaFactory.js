@@ -81,6 +81,7 @@ function mediaFactory(media, folder) {
         movie.addEventListener("click", openCarrousel);
 
         img.addEventListener("keydown", (e) => {
+            console.log(e);
             if (e.code === "Enter") openCarrousel();
         });
         movie.addEventListener("keydown", (e) => {
