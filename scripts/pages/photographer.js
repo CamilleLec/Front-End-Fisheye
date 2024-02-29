@@ -12,8 +12,9 @@ fetch("data/photographers.json")
     .then((data) => {
         const photographers = data.photographers;
         const media = data.media;
-        photographerMedia = media.filter((item) => item.photographerId === id);
-        photographerData = photographers.find((item) => item.id === id);
+        photographerMedia = media.filter((item) => item.photographerId === id); // recupère les medias qui correspondent à l'id du photographe
+        photographerData = photographers.find((item) => item.id === id); // recupère les datas qui correspondent à l'id du photographe
+        
 
         photographerMedia.sort((a, b) => b.likes - a.likes);
 
@@ -96,16 +97,6 @@ fetch("data/photographers.json")
         document.querySelector(".totalLikes").innerHTML += totalLikes + ` <i class="fa-solid fa-heart"></i>`;
         document.querySelector(".rate").innerHTML += photographerData.price + `€ / Jours`;
     });
-
-// document.addEventListener("keydown", function (e) {
-//     // Vérifie si la touche Backspace est pressée
-//     if (e.key === "Backspace") {
-//         // Empêche l'action par défaut de la touche Backspace
-//         e.preventDefault();
-//         // Navigue à la page précédente
-//         window.history.back();
-//     }
-// });
 
 // Affichage du nom, du formulaire et de la photo du photographe
 

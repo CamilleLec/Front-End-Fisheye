@@ -16,18 +16,20 @@
     </head>
     <body>
         <header>
-            <img alt="logo Fisheye" src="assets/images/logo.png" class="logo" />
+            <a href="./index.html" tabindex="0">
+            <img alt="Fisheye Home page" src="assets/images/logo.png" class="logo" />
+            </a>
         </header>
         <main id="main">
             <div class="photograph-header">
-                <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                <button class="contact_button" aria-label="Contact me" onclick="displayModal()">Contactez-moi</button>
             </div>
 
             <section class="filter">
                 <h3>Trier par</h3>
 
                 <div class="orderByContainer">
-                    <div id="orderBy" tabindex="0">
+                    <div id="orderBy" tabindex="0" aria-labelledby="orderBy">
                         <span id="orderItem">Popularité</span>
                         <em class="fa-solid fa-chevron-up"></em>
                     </div>
@@ -47,8 +49,8 @@
                     <img src="#" alt="" class="photographerElements" />
                     <video controls class="photographerElements"></video>
                 </div>
-                <em class="fa-solid fa-chevron-right fa-3x chevron" id="right"></em>
-                <em class="fa-solid fa-chevron-left fa-3x chevron" id="left"></em>
+                <em class="fa-solid fa-chevron-right fa-3x chevron" id="right" aria-labelledby="right"></em>
+                <em class="fa-solid fa-chevron-left fa-3x chevron" id="left" aria-labelledby="left"></em>
                 <em class="fa-sharp fa-solid fa-xmark fa-3x"></em>
             </div>
             <div id="cards" class="medias"></div>
@@ -56,8 +58,8 @@
         <footer>
             <div class="footer"><span class="totalLikes"></span><span class="rate"></span></div>
         </footer>
-        <div id="contact_modal">
-            <div class="modal" role="dialog" aria-describedby="contact modal">
+        <div id="contactModal">
+            <div class="modal" role="dialog">
                 <header>
                     <h2>Contactez-moi</h2>
                     <img
@@ -65,26 +67,27 @@
                         alt="Fermer la modal"
                         src="assets/icons/close.svg"
                         onclick="closeModal()"
+                        aria-label="Close dialog"
                     />
                 </header>
                 <form>
                     <div>
                         <label for="firstName">Prénom</label>
-                        <input id="firstName" />
+                        <input id="firstName" aria-labelledby="firstName" />
                     </div>
                     <div>
                         <label for="lastName">Nom</label>
-                        <input id="lastName" />
+                        <input id="lastName" aria-labelledby="lastName" />
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input id="email" />
+                        <input id="email" aria-labelledby="email" />
                     </div>
                     <div>
                         <label for="message">Votre message</label>
-                        <textarea id="message"></textarea>
+                        <textarea id="message" aria-label="Message"></textarea>
                     </div>
-                    <button class="contact_button">Envoyer</button>
+                    <button class="contact_button" aria-label="send">Envoyer</button>
                 </form>
             </div>
         </div>

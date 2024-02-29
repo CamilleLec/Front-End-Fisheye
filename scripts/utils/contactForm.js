@@ -1,6 +1,6 @@
 const h2 = document.querySelector("h2");
 const form = document.querySelector("form");
-const modal = document.getElementById("contact_modal");
+const modal = document.getElementById("contactModal");
 const theModal = document.querySelector(".modal");
 const main = document.querySelector("main");
 
@@ -10,7 +10,7 @@ form.addEventListener("submit", (e) => {
     const nom = document.getElementById("lastName").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
-    
+
     console.log("Prénom:", prenom);
     console.log("Nom:", nom);
     console.log("Email:", email);

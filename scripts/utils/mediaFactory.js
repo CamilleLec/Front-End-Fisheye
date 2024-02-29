@@ -15,11 +15,13 @@ function mediaFactory(media, folder) {
         const img = document.createElement("img");
         img.classList.add("media-item");
         img.tabIndex = 0;
+        img.setAttribute("aria-label", "Lilac breasted roller, closeup view");
         const card = document.createElement("div");
         card.classList.add("card");
         const movie = document.createElement("video");
         movie.classList.add("media-item");
         movie.tabIndex = 0;
+        movie.setAttribute("aria-label", "Lilac breasted roller, closeup view");
         const textTitle = document.createElement("h3");
         textTitle.textContent = title;
         textTitle.classList.add("cardTitle");
@@ -27,7 +29,7 @@ function mediaFactory(media, folder) {
         like.tabIndex = 0;
         const cardContent = document.createElement("div");
         cardContent.classList.add("cardContent");
-        like.innerHTML = `<span>${likes}</span> <i class="fa-solid fa-heart hearts"></i>`;
+        like.innerHTML = `<span>${likes}</span> <i class="fa-solid fa-heart hearts" aria-label="likes"></i>`;
 
         function addLike() {
             const totalLikes = document.querySelector(".totalLikes");
@@ -47,7 +49,7 @@ function mediaFactory(media, folder) {
         like.addEventListener("click", () => addLike());
         like.addEventListener("keydown", (e) => {
             if (e.code === "Enter" || e.code === "Space") {
-                e.preventDefault()
+                e.preventDefault();
                 addLike();
             }
         });
@@ -64,6 +66,7 @@ function mediaFactory(media, folder) {
                 carrouselTextTitle.textContent = title;
                 carrouselTextTitle.style.color = "#901c1c";
                 carrouselTextTitle.style.marginTop = "0";
+                carrousel.setAttribute("aria-label", "image closeup view");
                 container.appendChild(carrouselTextTitle);
             } else if (video) {
                 newVid.style.display = "block";
@@ -73,6 +76,7 @@ function mediaFactory(media, folder) {
                 carrouselTextTitle.textContent = title;
                 carrouselTextTitle.style.color = "#901c1c";
                 carrouselTextTitle.style.marginTop = "0";
+                carrousel.setAttribute("aria-label", "image closeup view");
                 container.appendChild(carrouselTextTitle);
             }
         }
@@ -81,7 +85,6 @@ function mediaFactory(media, folder) {
         movie.addEventListener("click", openCarrousel);
 
         img.addEventListener("keydown", (e) => {
-            console.log(e);
             if (e.code === "Enter") openCarrousel();
         });
         movie.addEventListener("keydown", (e) => {
@@ -93,12 +96,14 @@ function mediaFactory(media, folder) {
             img.src = photographerImages;
             img.classList.add("pictures");
             img.setAttribute("alt", `${title}`);
+            img.setAttribute("aria-label", "closeup view");
             card.appendChild(img);
             cardContent.appendChild(textTitle);
         } else if (video) {
             const photographerVideo = `assets/images/${first}/${video}`;
             movie.src = photographerVideo;
             movie.setAttribute("alt", `${title}`);
+            movie.setAttribute("aria-label", "closeup view");
             card.appendChild(movie);
             cardContent.appendChild(textTitle);
             newVid.focus();
