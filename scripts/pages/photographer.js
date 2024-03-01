@@ -1,11 +1,13 @@
+/* eslint-disable no-undef */
 const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get("id"));
 let photographerData = { name: "name" };
 const carrousel = document.querySelector(".carrousel");
-const container = document.querySelector(".container");
 let photographerMedia = [];
 let first;
-let heartIcon = [];
+const closeCarrousel = document.querySelector(".fa-xmark");
+let currentIndex = 0;
+let rightHandler, leftHandler;
 
 fetch("data/photographers.json")
     .then((response) => response.json())
@@ -14,7 +16,6 @@ fetch("data/photographers.json")
         const media = data.media;
         photographerMedia = media.filter((item) => item.photographerId === id); // recupère les medias qui correspondent à l'id du photographe
         photographerData = photographers.find((item) => item.id === id); // recupère les datas qui correspondent à l'id du photographe
-        
 
         photographerMedia.sort((a, b) => b.likes - a.likes);
 
@@ -51,6 +52,11 @@ fetch("data/photographers.json")
             carrouselTextTitle.textContent = "";
         }
         closeCarrousel.addEventListener("click", closeLightbox);
+        closeCarrousel.addEventListener("keydown", (e) => {
+            if (e.code === "Enter" || e.code === "Space") {
+                closeLightbox(e);
+            }
+        });
 
         document.addEventListener("keydown", (e) => {
             if (e.code === "ArrowLeft") leftHandler();
@@ -66,10 +72,27 @@ fetch("data/photographers.json")
                     }
                 }
             }
+            if (e.code === "Tab" && carrousel.style.display === "block") {
+                if (document.activeElement.getAttribute("tabindex") < 1000) {
+                    e.preventDefault();
+                    left.focus();
+                }
+            }
         });
 
         right.addEventListener("click", rightHandler);
         left.addEventListener("click", leftHandler);
+
+        right.addEventListener("keydown", (e) => {
+            if (e.code !== "Tab") {
+                rightHandler();
+            }
+        });
+        left.addEventListener("keydown", (e) => {
+            if (e.code !== "Tab") {
+                leftHandler();
+            }
+        });
 
         // Mise a jour de l'image/video dans le carrousel
         function updateImage() {
@@ -191,7 +214,7 @@ popularite.addEventListener("keydown", (e) => {
 });
 
 title.addEventListener("click", () => {
-    photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
+    photographerMedia.sort((a, b) => a.title.localeCompare(b.title)); //localeCompare : Methode de tri qui compare 2 chaines de caractères et qui renvoi un nombre
     renderCards();
 });
 
@@ -203,7 +226,7 @@ title.addEventListener("keydown", (e) => {
 });
 
 date.addEventListener("click", () => {
-    photographerMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    photographerMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)); // parse : analyse la représentation textuelle d'une date, et renvoie le nombre de millisecondes depuis le 1er janvier 1970
     renderCards();
 });
 

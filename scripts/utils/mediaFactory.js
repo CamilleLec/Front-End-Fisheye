@@ -1,27 +1,27 @@
+/* eslint-disable no-undef */
 let allPictures;
-let currentIndex = 0;
-let rightHandler, leftHandler;
 const newVid = document.querySelector(".carrousel video");
 const newImg = document.querySelector(".carrousel img");
-const closeCarrousel = document.querySelector(".fa-xmark");
+const container = document.querySelector(".container");
 const carrouselTextTitle = document.createElement("h3");
 
+// eslint-disable-next-line no-unused-vars
 function mediaFactory(media, folder) {
     const first = folder;
-    let { photographerId, title, image, video, likes, date, price, id } = media;
+    let { title, image, video, likes } = media;
     let liked = false;
 
     function getMediaCard() {
         const img = document.createElement("img");
         img.classList.add("media-item");
         img.tabIndex = 0;
-        img.setAttribute("aria-label", "Lilac breasted roller, closeup view");
+        img.setAttribute("aria-label", title + " closeup view image");
         const card = document.createElement("div");
         card.classList.add("card");
         const movie = document.createElement("video");
         movie.classList.add("media-item");
         movie.tabIndex = 0;
-        movie.setAttribute("aria-label", "Lilac breasted roller, closeup view");
+        movie.setAttribute("aria-label", "closeup view movie");
         const textTitle = document.createElement("h3");
         textTitle.textContent = title;
         textTitle.classList.add("cardTitle");
@@ -60,6 +60,7 @@ function mediaFactory(media, folder) {
                 newImg.style.display = "block";
                 newImg.src = img.src;
                 allPictures = document.querySelectorAll(".media-item");
+                // eslint-disable-next-line no-undef
                 currentIndex = [...allPictures].indexOf(img);
                 newVid.style.display = "none";
                 newImg.setAttribute("alt", `${title}`);
@@ -96,17 +97,16 @@ function mediaFactory(media, folder) {
             img.src = photographerImages;
             img.classList.add("pictures");
             img.setAttribute("alt", `${title}`);
-            img.setAttribute("aria-label", "closeup view");
+            img.setAttribute("aria-label", title + " closeup view");
             card.appendChild(img);
             cardContent.appendChild(textTitle);
         } else if (video) {
             const photographerVideo = `assets/images/${first}/${video}`;
             movie.src = photographerVideo;
             movie.setAttribute("alt", `${title}`);
-            movie.setAttribute("aria-label", "closeup view");
+            movie.setAttribute("aria-label", title + " closeup view");
             card.appendChild(movie);
             cardContent.appendChild(textTitle);
-            newVid.focus();
         }
         card.appendChild(cardContent);
         cardContent.appendChild(like);

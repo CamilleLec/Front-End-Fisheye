@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const h2 = document.querySelector("h2");
 const form = document.querySelector("form");
 const modal = document.getElementById("contactModal");
@@ -23,6 +24,7 @@ document.addEventListener("keydown", (e) => {
 
 function displayModal() {
     modal.style.display = "block";
+    // eslint-disable-next-line no-undef
     h2.innerHTML += ` ${photographerData.name}`;
     main.setAttribute("aria-hidden", "true");
     theModal.setAttribute("aria-hidden", "false");

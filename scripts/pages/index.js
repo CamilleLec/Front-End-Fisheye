@@ -9,6 +9,7 @@ async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
+        // eslint-disable-next-line no-undef
         const photographerModel = photographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
 
@@ -18,7 +19,6 @@ async function displayData(photographers) {
         });
 
         userCardDOM.addEventListener("keydown", (e) => {
-            console.log(e);
             if (e.code === "Enter" || e.code === "Space") {
                 const id = e.currentTarget.getAttribute("data-id");
                 window.location.href = "photographer.html?id=" + id;

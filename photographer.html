@@ -17,7 +17,7 @@
     <body>
         <header>
             <a href="./index.html" tabindex="0">
-            <img alt="Fisheye Home page" src="assets/images/logo.png" class="logo" />
+                <img alt="Fisheye Home page" src="assets/images/logo.png" class="logo" />
             </a>
         </header>
         <main id="main">
@@ -35,11 +35,11 @@
                     </div>
 
                     <div class="list">
-                        <span id="popularite" class="listItem" tabindex="0"
+                        <span id="popularite" class="listItem" tabindex="0" aria-labelledby="popularite"
                             >Popularité<em class="fa-solid fa-chevron-down"></em>
                         </span>
-                        <span id="date" class="listItem" tabindex="0">Date</span>
-                        <span id="title" class="listItem" tabindex="0">Titre</span>
+                        <span id="date" class="listItem" tabindex="0" aria-labelledby="date">Date</span>
+                        <span id="title" class="listItem" tabindex="0" aria-labelledby="title">Titre</span>
                     </div>
                 </div>
             </section>
@@ -49,9 +49,9 @@
                     <img src="#" alt="" class="photographerElements" />
                     <video controls class="photographerElements"></video>
                 </div>
-                <em class="fa-solid fa-chevron-right fa-3x chevron" id="right" aria-labelledby="right"></em>
-                <em class="fa-solid fa-chevron-left fa-3x chevron" id="left" aria-labelledby="left"></em>
-                <em class="fa-sharp fa-solid fa-xmark fa-3x"></em>
+                <em class="fa-solid fa-chevron-right fa-3x chevron" tabindex="1001" id="right" aria-label="right"></em>
+                <em class="fa-solid fa-chevron-left fa-3x chevron" tabindex="1000" id="left" aria-label="left"></em>
+                <em class="fa-sharp fa-solid fa-xmark fa-3x" tabindex="1002" aria-label="close carrousel"></em>
             </div>
             <div id="cards" class="medias"></div>
         </main>
